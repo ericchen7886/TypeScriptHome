@@ -1,0 +1,24 @@
+{
+    "datepicker": {},
+    "calendar": {
+        "today": "今日"
+    },
+    "dateinput": {},
+    "timepicker": {
+        "now": "現在",
+        "cancel": "取消",
+        "set": "設定"
+    },
+    "datetimepicker": {
+        "date": "日期",
+        "time": "時間",
+        "cancel": "取消",
+        "set": "設定"
+    },
+    "numerictextbox": {},
+    "grid": {
+        "noRecords": "查無資料",
+        "pagerInfo": "第 {0} 到 {1} 筆，總共 {2} 筆",
+        "pagerItemsPerPage": "筆同時顯示"
+    }
+}

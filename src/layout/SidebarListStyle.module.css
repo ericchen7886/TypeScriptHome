@@ -1,0 +1,49 @@
+.item {
+    font-size: 0.875rem;
+    margin: 0;
+    color: white;
+    text-decoration: none;
+}
+.item:hover{
+    color: red;
+}
+
+.mobilesidebarlist {
+    min-height: calc(100% + 48px);
+    width: calc(100% - 64px);
+    position: relative;
+    float: left;
+    background-color: #433b38;
+}
+
+.sidebarlist {
+    min-height: calc(100vh - 112px);
+    width: 12.5rem;
+    position: relative;
+    float: left;
+    background-color: #433b38;
+}
+.sidebarlist::before {
+    /* height: 30000px; */
+    width: 200px;
+    content: '';
+    left: 0px;
+    bottom: -100%;
+    position: absolute;
+    background-color: #433b38;
+    z-index: -1;
+}
+
+.listitem {
+    display: inline-flex;
+    /* width: 100%; */
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 0.875rem;
+    font-family: Helvetica, Arial, '微軟正黑體', sans-serif;
+}
+
+.breadcrumb {
+    background-color: #efefef;
+    border-bottom: 1px solid #dfdfdf;
+}

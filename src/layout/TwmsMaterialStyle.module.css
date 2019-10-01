@@ -1,0 +1,25 @@
+.rightContent {
+    /* position: relative; */
+    float: left;
+    z-index: 2;
+    width: calc(100% - 200px);
+}
+
+.rightContent_close {
+    /* position: relative; */
+    float: left;
+    z-index: 2;
+    width: 100%;
+}
+
+.rightContentMobile {
+    width: 100%;
+    position: relative;
+    float: left;
+    z-index: 2;
+}
+
+.rightContentDisplay {
+    background: #fff;
+    padding: 10px 20px 20px 20px;
+}

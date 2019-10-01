@@ -1,0 +1,9 @@
+.item {
+    font-size: 0.875rem;
+    margin: 0;
+    color: #111;
+    text-decoration: none;
+}
+.item:hover{
+    color: red;
+}

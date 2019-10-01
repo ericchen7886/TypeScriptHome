@@ -1,0 +1,17 @@
+.listitem {
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.popup_content {
+    padding: 24px;
+}
+
+.detail_function_button_area {
+    width: 100%;
+    margin-top: 12px;
+    display: inline-flex;
+    justify-content: center;
+}
