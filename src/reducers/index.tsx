@@ -18,7 +18,12 @@ const reducers = {
   },
   [actionTypes.recvFetchTodoListResult]: function (state, action) {
     return recvFetchTodoListResult(state, action);
+  },
+  [actionTypes.addEditTodo]: function (state, action) {
+    return addEditTodo(state, action);
   }
+
+
 };
 
 export default function createReducers(initialState) {
@@ -36,6 +41,14 @@ export default function createReducers(initialState) {
 export const removeAllTodo = (state, action) => {
   const newTodos = [];
   return Object.assign({}, state, { todos: newTodos });
+};
+
+const addEditTodo = (state, action) => {
+  state.todos.map((to) => {
+    to.inEdit = action.payload.inEdit
+  });
+  console.log('reducer.......', state.todos)
+  return Object.assign({}, state);
 };
 
 const addTodo = (state, action) => {

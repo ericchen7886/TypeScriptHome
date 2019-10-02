@@ -3,7 +3,7 @@ import './App.css';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 import Title from './components/Title';
-
+import MultipInput from './components/Multip/MultipInput'
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import todoReducerCreator from './reducers';
@@ -42,9 +42,10 @@ class ReduxFullApp extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-          <Title />
+          {/* <Title />
           <TodoForm />
-          <TodoList />
+          <TodoList /> */}
+          <MultipInput />
         </div>
       </Provider>
     );

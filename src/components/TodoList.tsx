@@ -7,6 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -29,7 +30,15 @@ const SimpleTable = (props) => {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell>id</TableCell>
+            <TableCell padding="checkbox">
+              <Checkbox
+                // indeterminate={numSelected > 0 && numSelected < rowCount}
+                // checked={numSelected === rowCount}
+                // onChange={onSelectAllClick}
+                inputProps={{ 'aria-label': 'select all desserts' }}
+              />
+            </TableCell>
+            <TableCell align="right">id</TableCell>
             <TableCell align="right">No</TableCell>
             <TableCell align="right">name</TableCell>
             <TableCell align="right">money</TableCell>
@@ -39,7 +48,15 @@ const SimpleTable = (props) => {
         <TableBody>
           {todos.map((todo, idx) => (
             <TableRow key={todo.id}>
-              <TableCell component="th" scope="row">
+              <TableCell padding="checkbox">
+                <Checkbox
+                  // indeterminate={numSelected > 0 && numSelected < rowCount}
+                  // checked={numSelected === rowCount}
+                  // onChange={onSelectAllClick}
+                  inputProps={{ 'aria-label': 'select all desserts' }}
+                />
+              </TableCell>
+              <TableCell align="right" component="th" scope="row">
                 {idx + 1}
               </TableCell>
               <TableCell align="right">{todo.id}</TableCell>

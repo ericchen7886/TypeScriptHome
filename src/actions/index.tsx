@@ -10,6 +10,15 @@ export const removeAllTodo = () => {
 	};
 };
 
+export const addEditTodo = (isEdit) => {
+	return {
+		type: actionTypes.addEditTodo,
+		payload: {
+			isEdit: false
+		}
+	};
+};
+
 
 export const addTodo = name => {
 	return {
@@ -200,3 +209,73 @@ export const fetchTodosOneFromServer = (id) => {
 			});
 	};
 };
+
+
+// 1. Submit
+export const fetchTodosSubmitServer = (todos) => {
+	const NewTodos: any = [];
+
+	todos.map((to) => {
+		if (to.inAdd) {
+			delete to.id;
+			delete to.inAdd;
+			delete to.inEdit;
+			NewTodos.push(to);
+		} else if (to.inEdit) {
+			delete to.inEdit;
+			delete to.inAdd;
+			NewTodos.push(to);
+		}
+	})
+
+	console.log('2 Submit NewTodosTodos.............', NewTodos)
+
+	return (dispatch, getState) => {
+		console.log('3 Submit.............')
+		dispatch(beginFetchTodoList());
+		const API_URL = 'http://localhost:8080/api/v1/users/';
+
+		const data2 = {
+			id: '8',
+			name: 'eric chen',
+			money: '599',
+			description: '199',
+		}
+		// 新增
+		const postOption = {
+			// mode: 'cors',
+			method: 'POST',
+			body: JSON.stringify(todos),
+			headers: {
+				'Content-Type': 'application/json'
+			},
+		}
+
+		console.log('4 Submit.............', postOption.body)
+		fetch(API_URL, postOption)
+			.then(response => {
+				console.log('Submit response', response);
+				if (response.ok !== true) {
+					console.log('Submit Bad insert........', response.status);
+					switch (response.status) {
+						case 401:
+							return dispatch(finishFetchTodoList(401));
+						case 404:
+							return dispatch(finishFetchTodoList(404));
+						case 500:
+							return dispatch(finishFetchTodoList(500));
+						default:
+							return alert(response.status);
+					}
+				} else {
+					console.log('Submit success insert........', todos);
+				}
+			})
+			.catch(error => {
+				console.log('Submit error', error);
+				// 2-1 網路問題無法呼叫，通知使用者，並取消載入狀態
+				dispatch(finishFetchTodoList(error));
+			});
+	};
+};
+

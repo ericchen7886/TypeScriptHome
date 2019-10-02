@@ -1,0 +1,18 @@
+.popup {
+}
+
+.popup_content {
+    padding: 12px 24px;
+    color: red;
+    min-width: 500px;
+    max-height: 100px;
+    overflow: auto;
+}
+
+.popup_functionarea {
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    /* margin-top: 12px; */
+    margin-bottom: 24px;
+}
