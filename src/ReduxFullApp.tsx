@@ -4,6 +4,7 @@ import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 import Title from './components/Title';
 import MultipInput from './components/Multip/MultipInput'
+import PageflowHome from './components/FlowPage/Pageflow_home'
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import todoReducerCreator from './reducers';
@@ -45,7 +46,8 @@ class ReduxFullApp extends Component {
           {/* <Title />
           <TodoForm />
           <TodoList /> */}
-          <MultipInput />
+          {/* <MultipInput /> */}
+          <PageflowHome />
         </div>
       </Provider>
     );

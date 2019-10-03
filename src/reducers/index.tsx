@@ -1,14 +1,14 @@
 import actionTypes from '../actions/actionTypes';
 
 const reducers = {
-  [actionTypes.removeAllTodo]: function (state, action) {
-    return removeAllTodo(state, action);
+  [actionTypes.removeBantchTodo]: function (state, action) {
+    return removeBantchTodo(state, action);
   },
   [actionTypes.addTodo]: function (state, action) {
     return addTodo(state, action);
   },
-  [actionTypes.removeTodo]: function (state, action) {
-    return removeTodo(state, action);
+  [actionTypes.removeTodoById]: function (state, action) {
+    return removeTodoById(state, action);
   },
   [actionTypes.beginFetchTodoList]: function (state, action) {
     return beginFetchTodoList(state, action);
@@ -22,8 +22,6 @@ const reducers = {
   [actionTypes.addEditTodo]: function (state, action) {
     return addEditTodo(state, action);
   }
-
-
 };
 
 export default function createReducers(initialState) {
@@ -38,8 +36,19 @@ export default function createReducers(initialState) {
   };
 }
 
-export const removeAllTodo = (state, action) => {
-  const newTodos = [];
+export const removeBantchTodo = (state, action) => {
+  const newTodos = state.todos.filter(todo => {
+    return todo.id !== action.payload.id;
+  });
+
+  return Object.assign({}, state, { todos: newTodos });;
+};
+
+const removeTodoById = (state, action) => {
+  const newTodos = state.todos.filter(todo => {
+    return todo.id !== action.payload.id;
+  });
+
   return Object.assign({}, state, { todos: newTodos });
 };
 
@@ -60,14 +69,6 @@ const addTodo = (state, action) => {
       name: action.payload.name
     }
   ];
-
-  return Object.assign({}, state, { todos: newTodos });
-};
-
-const removeTodo = (state, action) => {
-  const newTodos = state.todos.filter(todo => {
-    return todo.id !== action.payload.id;
-  });
 
   return Object.assign({}, state, { todos: newTodos });
 };

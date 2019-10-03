@@ -1,7 +1,7 @@
 export default {
-	removeAllTodo: 'removeAllTodo',
+	removeBantchTodo: 'removeBantchTodo',
 	addTodo: 'addTodo',
-	removeTodo: 'removeTodo',
+	removeTodoById: 'removeTodoById',
 	beginFetchTodoList: 'beginFetchTodoList',
 	finishFetchTodoList: 'finishFetchTodoList',
 	recvFetchTodoListResult: 'recvFetchTodoListResult',

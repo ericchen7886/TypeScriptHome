@@ -1,0 +1,16 @@
+
+.taskbar {
+    padding: 10px;
+    border: 1px solid #dfdfdf;
+    background-color: #fff;
+}
+
+.taskbar_fixed {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dfdfdf;
+    background-color: #fff;
+    position: fixed;
+    top: 0px;
+    z-index: 30;
+}

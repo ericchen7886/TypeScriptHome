@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import { addTodo, fetchTodosOneFromServer, removeAllTodo } from '../actions';
+import { addTodo, fetchTodosOneFromServer } from '../actions';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 
@@ -45,7 +45,7 @@ const Form = (props) => {
         className={classes.button}
         onClick={e => {
           e.preventDefault();
-          props.removeAllTodo();
+          // props.removeAllTodo();
           props.fetchTodosOneFromServer(input.value);
           console.log('1.input.....', input.value);
           input.value = '';
@@ -73,9 +73,9 @@ const mapDispatchToProps = dispatch => {
     addTodo: text => {
       dispatch(addTodo(text));
     },
-    removeAllTodo: () => {
-      dispatch(removeAllTodo());
-    },
+    // removeAllTodo: () => {
+    //   dispatch(removeAllTodo());
+    // },
     fetchTodosOneFromServer: (id) => {
       dispatch(fetchTodosOneFromServer(id));
     }
