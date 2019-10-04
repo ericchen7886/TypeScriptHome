@@ -4,6 +4,9 @@ const reducers = {
   [actionTypes.removeBantchTodo]: function (state, action) {
     return removeBantchTodo(state, action);
   },
+  [actionTypes.removeAllTodo]: function (state, action) {
+    return removeAllTodo(state, action);
+  },
   [actionTypes.addTodo]: function (state, action) {
     return addTodo(state, action);
   },
@@ -35,6 +38,11 @@ export default function createReducers(initialState) {
     }
   };
 }
+
+export const removeAllTodo = (state, action) => {
+  const newTodos = [];
+  return Object.assign({}, state, { todos: newTodos });;
+};
 
 export const removeBantchTodo = (state, action) => {
   const newTodos = state.todos.filter(todo => {

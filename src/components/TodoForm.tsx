@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import { addTodo, fetchTodosOneFromServer } from '../actions';
+import { addTodo, removeAllTodo, fetchTodosOneFromServer, axiosService, axiosAllService, axiosMultipAllService } from '../actions';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 
@@ -9,6 +9,9 @@ interface Props {
   addTodo: any
   removeAllTodo: any
   fetchTodosOneFromServer: any
+  axiosService: any
+  axiosAllService: any
+  axiosMultipAllService: any
 }
 
 const useStyles = makeStyles((theme) =>
@@ -21,6 +24,7 @@ const useStyles = makeStyles((theme) =>
     },
   }),
 );
+
 const Form = (props) => {
   let input: any = '';
   const classes = useStyles();
@@ -30,7 +34,7 @@ const Form = (props) => {
         e.preventDefault();
         props.removeAllTodo();
         props.fetchTodosOneFromServer(input.value);
-        console.log('1.input.....', input.value);
+        // props.axiosMultipAllService();
         input.value = '';
       }}
     >
@@ -45,14 +49,26 @@ const Form = (props) => {
         className={classes.button}
         onClick={e => {
           e.preventDefault();
-          // props.removeAllTodo();
+          props.removeAllTodo();
           props.fetchTodosOneFromServer(input.value);
-          console.log('1.input.....', input.value);
           input.value = '';
         }}
       >
         編號查詢(無輸入查詢全部)
-        <Icon className={classes.rightIcon}>Click</Icon>
+        <Icon className={classes.rightIcon}>0</Icon>
+      </Button>
+      <Button variant="contained"
+        color="primary"
+        className={classes.button}
+        onClick={e => {
+          e.preventDefault();
+          props.removeAllTodo();
+          props.axiosMultipAllService();
+          input.value = '';
+        }}
+      >
+        點擊後多筆查詢(id編號1,2,3)
+        <Icon className={classes.rightIcon}>0</Icon>
       </Button>
       <br />
     </form>
@@ -62,8 +78,11 @@ const Form = (props) => {
 class TodoForm extends React.Component<Props, any> {
 
   render() {
-    return (
-      <Form removeAllTodo={this.props.removeAllTodo} fetchTodosOneFromServer={this.props.fetchTodosOneFromServer} />
+    return ( // axiosAllService  axiosMultipAllService
+      <Form
+        removeAllTodo={this.props.removeAllTodo}
+        fetchTodosOneFromServer={this.props.fetchTodosOneFromServer}
+        axiosMultipAllService={this.props.axiosMultipAllService} />
     )
   }
 }
@@ -73,12 +92,23 @@ const mapDispatchToProps = dispatch => {
     addTodo: text => {
       dispatch(addTodo(text));
     },
-    // removeAllTodo: () => {
-    //   dispatch(removeAllTodo());
-    // },
+    removeAllTodo: () => {
+      dispatch(removeAllTodo());
+    },
     fetchTodosOneFromServer: (id) => {
       dispatch(fetchTodosOneFromServer(id));
-    }
+    },
+    axiosService: (id) => {
+      dispatch(axiosService(id));
+    },
+    axiosAllService: () => {
+      dispatch(axiosAllService());
+    },
+    axiosMultipAllService: () => {
+      dispatch(axiosMultipAllService());
+    },
+
+
   };
 };
 

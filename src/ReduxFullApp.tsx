@@ -43,11 +43,11 @@ class ReduxFullApp extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-          {/* <Title />
+          <Title />
           <TodoForm />
-          <TodoList /> */}
+          <TodoList />
           {/* <MultipInput /> */}
-          <PageflowHome />
+          {/* <PageflowHome /> */}
         </div>
       </Provider>
     );

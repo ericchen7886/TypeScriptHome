@@ -30,15 +30,7 @@ const SimpleTable = (props) => {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell padding="checkbox">
-              <Checkbox
-                // indeterminate={numSelected > 0 && numSelected < rowCount}
-                // checked={numSelected === rowCount}
-                // onChange={onSelectAllClick}
-                inputProps={{ 'aria-label': 'select all desserts' }}
-              />
-            </TableCell>
-            <TableCell align="right">id</TableCell>
+            <TableCell >id</TableCell>
             <TableCell align="right">No</TableCell>
             <TableCell align="right">name</TableCell>
             <TableCell align="right">money</TableCell>
@@ -48,15 +40,7 @@ const SimpleTable = (props) => {
         <TableBody>
           {todos.map((todo, idx) => (
             <TableRow key={todo.id}>
-              <TableCell padding="checkbox">
-                <Checkbox
-                  // indeterminate={numSelected > 0 && numSelected < rowCount}
-                  // checked={numSelected === rowCount}
-                  // onChange={onSelectAllClick}
-                  inputProps={{ 'aria-label': 'select all desserts' }}
-                />
-              </TableCell>
-              <TableCell align="right" component="th" scope="row">
+              <TableCell component="th" scope="row">
                 {idx + 1}
               </TableCell>
               <TableCell align="right">{todo.id}</TableCell>

@@ -1,8 +1,139 @@
 import actionTypes from './actionTypes';
+import axios from 'axios';
 
 let nextTodoId = 0;
+// axios 多筆嵌入式查詢 
+export const axiosMultipAllService = () => {
+	return async (dispatch, getState) => {
+		try {
+			const todos: any = []
+			const res1 = await axios.get("http://localhost:8080/api/v1/users/1")
+			console.log('res111111..........', res1.data);
+			if (res1.status === 200) {
+				const res2 = await axios.get("http://localhost:8080/api/v1/users/2")
+				if (res2.status === 200) {
+					console.log('res22222..........', res2.data);
+					const res3 = await axios.get("http://localhost:8080/api/v1/users/3")
+					if (res3.status === 200) {
+						console.log('res33333..........', res3.data);
+						todos.push(res1.data);
+						todos.push(res2.data);
+						todos.push(res3.data);
+					}
+				}
+			}
+			dispatch(recvFetchTodoListResult(todos));
+			dispatch(finishFetchTodoList(200));
+		} catch (error) {
+			console.log('res....from error', error);
+			// 2-1 網路問題無法呼叫，通知使用者，並取消載入狀態
+			dispatch(finishFetchTodoList(error));
+		}
+	}
+}
+
+// axios 多筆查詢
+export const axiosAllService = () => {
+	const initUrla = axios.get("http://localhost:8080/api/v1/users/1");
+	const initUrlb = axios.get("http://localhost:8080/api/v1/users/2");
+	const initUrlc = axios.get("http://localhost:8080/api/v1/users/3");
+	const totalUrl = [initUrla, initUrlb, initUrlc];
+	return /*async*/ (dispatch, getState) => {
+		/*await*/ axios.all(totalUrl)
+			.then(axios.spread((...response) => {
+				if ((response[0].status === 200) && (response[1].status === 200) && (response[2].status === 200)) {
+					console.log('res....from success');
+					const todos: any = [];
+					response.forEach((r) => {
+						todos.push(r.data);
+					})
+					dispatch(recvFetchTodoListResult(todos));
+					dispatch(finishFetchTodoList(200));
+				} else {
+					console.log('res....from exception');
+					response.forEach((r, idx) => {
+						idx++;
+						switch (r.status) {
+							case 401:
+								return dispatch(finishFetchTodoList(401));
+							case 404:
+								return dispatch(finishFetchTodoList(404));
+							case 500:
+								return dispatch(finishFetchTodoList(500));
+							default:
+								return alert(r.status);
+						}
+					})
+				}
+			})).catch((error) => {
+				console.log('res....from error', error);
+				// 2-1 網路問題無法呼叫，通知使用者，並取消載入狀態
+				dispatch(finishFetchTodoList(error));
+			})
+	}
+}
+
+// axios 單筆查詢
+export const axiosService = (id) => {
+	const apiUrl = 'http://localhost:8080/api/v1/users/' + id;
+	// 用户传入的接口配置参数
+	const method = 'GET'
+	const params = {}
+	const data = {}
+	const timeout = 5000
+
+	/**
+	 * 返回的Promise对象含有then、catch方法
+	 */
+	return (dispatch, getState) => {
+		axios({
+			url: apiUrl,
+			method: method,
+			params: params,
+			data: data,
+			timeout: timeout,
+			headers: {
+				'Content-Type': 'application/json',
+				'token': window.sessionStorage.getItem('token') || ''
+			}
+		}).then((response) => {
+			if (!(response.status === 200)) {
+				switch (response.status) {
+					case 401:
+						return dispatch(finishFetchTodoList(401));
+					case 404:
+						return dispatch(finishFetchTodoList(404));
+					case 500:
+						return dispatch(finishFetchTodoList(500));
+					default:
+						return alert(response.status);
+				}
+			} else {
+				console.log('Submit success insert........', response.data);
+				const todos = response.data;
+				dispatch(recvFetchTodoListResult(todos));
+				dispatch(finishFetchTodoList(200));
+				console.log('todos2........', todos);
+
+			}
+		}).catch((error) => {
+			console.log('Submit error', error);
+			// 2-1 網路問題無法呼叫，通知使用者，並取消載入狀態
+			dispatch(finishFetchTodoList(error));
+		})
+	}
+}
 
 
+// 清空表單
+export const removeAllTodo = () => {
+	return {
+		type: actionTypes.removeAllTodo,
+		payload: [],
+	};
+};
+
+// 新增表單
 export const addEditTodo = (isEdit) => {
 	return {
 		type: actionTypes.addEditTodo,

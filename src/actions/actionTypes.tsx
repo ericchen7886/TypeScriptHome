@@ -5,5 +5,6 @@ export default {
 	beginFetchTodoList: 'beginFetchTodoList',
 	finishFetchTodoList: 'finishFetchTodoList',
 	recvFetchTodoListResult: 'recvFetchTodoListResult',
-	addEditTodo: 'addEditTodo'
+	addEditTodo: 'addEditTodo',
+	removeAllTodo: 'actionTypes.removeAllTodo',
 };
