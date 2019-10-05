@@ -7,7 +7,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
-import Checkbox from '@material-ui/core/Checkbox';
 import { DatePicker } from '@progress/kendo-react-dateinputs';
 
 const useStyles = makeStyles((theme) =>
@@ -38,12 +37,12 @@ const SimpleTable = (props) => {
       <Table className={classes.table}>
         <TableHead>
           <TableRow className={classes.row}>
-            <TableCell >id</TableCell>
+            <TableCell >流水號</TableCell>
             <TableCell align="right">No</TableCell>
-            <TableCell align="right">name</TableCell>
-            <TableCell align="right">money</TableCell>
-            <TableCell align="right">description</TableCell>
-            <TableCell align="right">Date</TableCell>
+            <TableCell align="right">名字</TableCell>
+            <TableCell align="right">金額</TableCell>
+            <TableCell align="right">說明</TableCell>
+            <TableCell align="right">日期</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -79,7 +78,7 @@ interface Props {
   date: any
 }
 // 待辦事項清單列表
-class TodoList extends React.Component<any, any> {
+class VaildTodoList extends React.Component<any, any> {
   handleDateChange = (event) => {
     const date = event.value;
     this.setState({
@@ -106,4 +105,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(TodoList);
+export default connect(mapStateToProps)(VaildTodoList);

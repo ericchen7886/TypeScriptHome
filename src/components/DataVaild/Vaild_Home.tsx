@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import TodoList from './TodoList';
-import TodoForm from './TodoForm';
-import Title from './Title';
+import VaildTodoList from './VaildTodoList';
+import VaildTodoForm from './VaildTodoForm';
+import VaildTitle from './VaildTitle';
 import { connect } from 'react-redux';
 import { UIDisplay } from "../Multip/UIDisplay";
 
@@ -14,16 +14,16 @@ class MultipHome extends React.Component<any, any> {
     }
 
     render() {
-        const MultipBox =
+        const VaildBox =
             <div>
-                <Title />
-                <TodoForm />
-                <TodoList date={this.state.date} />
+                <VaildTitle />
+                <VaildTodoForm />
+                <VaildTodoList date={this.state.date} />
             </div>
         return (
             <UIDisplay
-                title="MultipInput DEMO"
-                content={MultipBox}
+                title="VaildData DEMO"
+                content={VaildBox}
             />
         )
     }

@@ -3,30 +3,60 @@ import axios from 'axios';
 
 let nextTodoId = 0;
 // axios 多筆嵌入式查詢 
-export const axiosMultipAllService = () => {
+
+export const nameState = (msg1) => {
+	const a = msg1
+	return {
+		type: actionTypes.nameState,
+		payload: {
+			msg1
+		}
+	};
+};
+
+export const moneyState = (msg2) => {
+	return {
+		type: actionTypes.moneyState,
+		payload: {
+			msg2
+		}
+	};
+};
+
+export const descState = (msg3) => {
+	return {
+		type: actionTypes.descState,
+		payload: {
+			msg3
+		}
+	};
+};
+
+export const axiosMultipAllService = (id) => {
 	return async (dispatch, getState) => {
 		try {
-			const todos: any = []
-			const res1 = await axios.get("http://localhost:8080/api/v1/users/1")
-			console.log('res111111..........', res1.data);
-			if (res1.status === 200) {
-				const res2 = await axios.get("http://localhost:8080/api/v1/users/2")
-				if (res2.status === 200) {
-					console.log('res22222..........', res2.data);
-					const res3 = await axios.get("http://localhost:8080/api/v1/users/3")
-					if (res3.status === 200) {
-						console.log('res33333..........', res3.data);
-						todos.push(res1.data);
-						todos.push(res2.data);
-						todos.push(res3.data);
+			dispatch(nameState(3));
+			dispatch(moneyState(3));
+			dispatch(descState(3));
+			let st = 201;
+			dispatch(axiosService(id)); // id查詢此用戶
+			const res1 = await axios.get("http://localhost:8080/api/v1/users/" + id + "/name")
+			dispatch(nameState(res1.data));
+			if (res1.data === 1) {
+				const res2 = await axios.get("http://localhost:8080/api/v1/users/" + id + "/money")
+				dispatch(moneyState(res2.data));
+				if (res2.data === 1) {
+					const res3 = await axios.get("http://localhost:8080/api/v1/users/" + id + "/desc")
+					if (res3.data === 1) {
+						dispatch(descState(res3.data));
+						st = 200;
 					}
 				}
 			}
-			dispatch(recvFetchTodoListResult(todos));
+			dispatch(finishFetchTodoValid(st));
 			dispatch(finishFetchTodoList(200));
 		} catch (error) {
-			console.log('res....from error', error);
-			// 2-1 網路問題無法呼叫，通知使用者，並取消載入狀態
+			dispatch(finishFetchTodoValid(201));
 			dispatch(finishFetchTodoList(error));
 		}
 	}
@@ -188,6 +218,16 @@ export const finishFetchTodoList = error => {
 		payload: {
 			isFetchingTodoList: false,
 			error
+		}
+	};
+};
+
+export const finishFetchTodoValid = errorMsg => {
+	console.log('errorMsg', errorMsg);
+	return {
+		type: actionTypes.finishFetchTodoValid,
+		payload: {
+			errorMsg
 		}
 	};
 };

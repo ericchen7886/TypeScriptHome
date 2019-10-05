@@ -24,9 +24,42 @@ const reducers = {
   },
   [actionTypes.addEditTodo]: function (state, action) {
     return addEditTodo(state, action);
-  }
+  },
+  [actionTypes.nameState]: function (state, action) {
+    return nameState(state, action);
+  },
+  [actionTypes.moneyState]: function (state, action) {
+    return moneyState(state, action);
+  },
+  [actionTypes.descState]: function (state, action) {
+    return descState(state, action);
+  },
+  [actionTypes.finishFetchTodoValid]: function (state, action) {
+    return finishFetchTodoValid(state, action);
+  },
+
 };
 
+const nameState = (state, action) => {
+  console.log('nameState.....');
+  return Object.assign({}, state, {
+    msg1: action.payload.msg1
+  });
+};
+
+const moneyState = (state, action) => {
+  console.log('moneyState.....');
+  return Object.assign({}, state, {
+    msg2: action.payload.msg2
+  });
+};
+
+const descState = (state, action) => {
+  console.log('descState.....');
+  return Object.assign({}, state, {
+    msg3: action.payload.msg3
+  });
+};
 export default function createReducers(initialState) {
   console.log('init...', initialState)
   return function reducer(state = initialState, action) {
@@ -92,8 +125,16 @@ const beginFetchTodoList = (state, action) => {
   });
 };
 
+
+
+const finishFetchTodoValid = (state, action) => {
+  return Object.assign({}, state, {
+    isFetchingTodoList: false,
+    errorMsg: action.payload.errorMsg
+  });
+};
+
 const finishFetchTodoList = (state, action) => {
-  // 若已經沒有在載入資料，無須異動state
   console.log('finishFetchTodoList.....');
 
   if (!state.isFetchingTodoList) {

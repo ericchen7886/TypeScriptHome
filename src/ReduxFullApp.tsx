@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Vaild_Home from './components/DataVaild/Multip_Home';
+import Vaild_Home from './components/DataVaild/Vaild_Home';
 import Multip_Home from './components/Search/Multip_Home';
-import TodoForm from './components/Search/TodoForm';
-import Title from './components/Search/Title';
 import Summaryhome from './components/summary/Summaryhome';
 import MultipInput from './components/Multip/MultipInput'
 import PageflowHome from './components/FlowPage/Pageflow_home'
@@ -62,27 +60,27 @@ class ReduxFullApp extends Component {
                   <ul>
                     <li className={'liStyle'}>
                       <Link to="/">
-                        <h3>1. Multip_Home 資料查詢</h3>
+                        <h3>1. 資料查詢系統</h3>
                       </Link>
                     </li>
                     <li className={'liStyle'}>
                       <Link to="/MultipInput/">
-                        <h3>2. MultipInput 多筆輸入</h3>
+                        <h3>2. 資料新增與修改系統</h3>
                       </Link>
                     </li>
                     <li className={'liStyle'}>
                       <Link to="/PageflowHome/">
-                        <h3>3. PageflowHome 頁面流</h3>
+                        <h3>3. 資料頁面流系統</h3>
                       </Link>
                     </li>
                     <li className={'liStyle'}>
                       <Link to="/Summaryhome/">
-                        <h3>4. Summaryhome 合計</h3>
+                        <h3>4. 用戶繳費圖系統</h3>
                       </Link>
                     </li>
                     <li className={'liStyle'}>
                       <Link to="/VaildHome/">
-                        <h3>5. Axios 批次請求</h3>
+                        <h3>5. 資料驗證系統</h3>
                       </Link>
                     </li>
                   </ul>

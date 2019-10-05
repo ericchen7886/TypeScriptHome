@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
-
-
 
 interface Props {
   todos: any
+  errorMsg: any
 }
 
 // 待辦事項清單列表
-class Title extends React.Component<Props, any> {
+class VaildTitle extends React.Component<Props, any> {
   constructor(props) {
     super(props);
-    console.log('init..................');
-    console.log(this.props.todos)
-
+    console.log('init..................123123123', this.props.errorMsg)
   }
 
   // {this.props.isFetching ? '載入中' : this.props.todos.length}
@@ -23,8 +19,11 @@ class Title extends React.Component<Props, any> {
       <div>
         <div>
           <h1>
-            用戶資料查詢 (狀態({getErrorMsg(this.props)}))
+            資料繳費系統
           </h1>
+          <div>
+            狀態 - <b>{getErrorMsg(this.props)}</b>
+          </div>
         </div>
       </div>
     );
@@ -32,24 +31,17 @@ class Title extends React.Component<Props, any> {
 }
 
 // Connect時候需要轉譯的Store state props
-
 const getErrorMsg = props => {
-  console.log('title', props.todos)
+
   if (!props.isFetching) {
-    switch (props.error) {
-      case 401:
-        return '找不到資源';
-      case 404:
-        return '找不到這頁資源';
-      case 500:
-        return '內部伺服器錯誤';
+    console.log('ErrorMsg......................', props.errorMsg)
+    switch (props.errorMsg) {
+      case 201:
+        return '資料驗證失敗, 請重新編輯資料!!';
       case 200:
-        if (!(props.todos.length > 0)) {
-          return '資料庫查無編號';
-        }
-        return props.todos.length;
+        return '資料驗證成功, 可以進行繳費.';
       default:
-        return 'Error';
+        return '資料庫查無編號';
     }
   } else {
     return '載入中';
@@ -58,13 +50,13 @@ const getErrorMsg = props => {
 };
 
 const mapStateToProps = state => {
-  console.log('12345', state.todos)
   return {
     todos: state.todos,
     isFetching: state.isFetchingTodoList,
-    error: state.error
+    error: state.error,
+    errorMsg: state.errorMsg,
   };
 
 };
 
-export default connect(mapStateToProps)(Title);
+export default connect(mapStateToProps)(VaildTitle);

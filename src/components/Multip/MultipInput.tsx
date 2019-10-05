@@ -29,10 +29,12 @@ class MultipInput extends Component<any, any>{
             inEdit: false,
             tempTodos: [],
         }
+        // location.reload();
     }
 
     // 後端帶回資料後,加入更新狀態
     componentDidUpdate() {
+        // this.props.fetchTodosFromServer();
         const { todos } = this.props;
         const { isFetch, tempTodos } = this.state;
         if (todos.length > 0 && isFetch) {
@@ -100,19 +102,20 @@ class MultipInput extends Component<any, any>{
         this.setState({ todos: data });
     }
 
+    handleReloadClick = (e) => {
+        location.reload();
+    }
+
+
+
     handelCancelClick = (dataItem) => (event) => {
-        console.log('handelCancelClick..........')
         const { todos, tempTodos } = this.state;
-        console.log('tempTodos..........', tempTodos)
         const index = dataItem.id - 1;
-        console.log('index..........', index)
         const data = todos.slice();
-        console.log('data..........', data)
         data[index] = tempTodos
         this.setState({
             tempTodos: [],
         })
-        console.log('tempTodos2.............', tempTodos);
         this.setState({ todos: data });
     }
 
@@ -125,17 +128,16 @@ class MultipInput extends Component<any, any>{
 
     render() {
         const { todos } = this.state;
-        // const { editId } = this.state;
         const multiInputDisplay =
             <div>
                 <MultiInputGrid
                     data={todos}
-                    // handleRowClick={this.handleRowClick}
                     itemChange={this.itemChange}
                     handleCreateClick={this.handleCreateClick}
                     handleEditClick={this.handleEditClick}
                     handelCancelClick={this.handelCancelClick}
                     handleSubmitClick={this.handleSubmitClick}
+                    handleReloadClick={this.handleReloadClick}
                 />
             </div>
 
@@ -159,7 +161,7 @@ const mapDispatchToProps = dispatch => {
         },
         fetchTodosFromServer: () => {
             dispatch(fetchTodosFromServer());
-        }
+        },
     };
 };
 

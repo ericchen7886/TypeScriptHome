@@ -14,8 +14,10 @@ export const MultiInputGrid: React.FC<any> = (props) => {
         handleCreateClick,
         handleEditClick,
         handelCancelClick,
-        handleSubmitClick
+        handleSubmitClick,
+        handleReloadClick
     } = props;
+
 
     return (
         <Grid
@@ -28,18 +30,30 @@ export const MultiInputGrid: React.FC<any> = (props) => {
         >
             <GridToolbar>
                 <Button
+                    color="primary"
+                    variant="outlined"
                     title="Add new"
                     onClick={handleCreateClick}
+
                 >新增
                 </Button>
 
                 {/* {data.filter(p => p.inEdit).length > 0 && ( */}
                 <Button
+                    color="secondary"
+                    variant="outlined"
                     title="Cancel current changes"
                     onClick={handleSubmitClick}
                 >送出表單
                     </Button>
                 {/* )} */}
+                <Button
+                    color="primary"
+                    variant="contained"
+                    title="current Search"
+                    onClick={handleReloadClick}
+                >表單刷新/查詢
+                    </Button>
             </GridToolbar>
             <Column field="id" title="Id" width="80px" editable={false} />
             <Column field="name" title="Name" />

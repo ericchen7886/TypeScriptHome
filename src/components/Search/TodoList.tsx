@@ -38,12 +38,12 @@ const SimpleTable = (props) => {
       <Table className={classes.table}>
         <TableHead>
           <TableRow className={classes.row}>
-            <TableCell >id</TableCell>
-            <TableCell align="right">No</TableCell>
-            <TableCell align="right">name</TableCell>
-            <TableCell align="right">money</TableCell>
-            <TableCell align="right">description</TableCell>
-            <TableCell align="right">Date</TableCell>
+            <TableCell>序號</TableCell>
+            <TableCell align="right">編號</TableCell>
+            <TableCell align="right">名字</TableCell>
+            <TableCell align="right">金額</TableCell>
+            <TableCell align="right">說明</TableCell>
+            <TableCell align="right">日期</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

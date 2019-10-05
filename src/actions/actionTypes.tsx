@@ -4,7 +4,12 @@ export default {
 	removeTodoById: 'removeTodoById',
 	beginFetchTodoList: 'beginFetchTodoList',
 	finishFetchTodoList: 'finishFetchTodoList',
+	finishFetchTodoValid: 'finishFetchTodoValid',
 	recvFetchTodoListResult: 'recvFetchTodoListResult',
 	addEditTodo: 'addEditTodo',
-	removeAllTodo: 'actionTypes.removeAllTodo',
+	removeAllTodo: 'removeAllTodo',
+	nameState: 'nameState',
+	moneyState: 'moneyState',
+	descState: 'descState',
+
 };
