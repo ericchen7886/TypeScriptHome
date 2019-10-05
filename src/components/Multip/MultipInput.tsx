@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import MultiInputGrid from './MultiInput_Grid';
-import { UIPatternDisplay } from "./UIPatternDisplay";
+import { UIDisplay } from "./UIDisplay";
 import { connect } from 'react-redux';
 import { addEditTodo, fetchTodosSubmitServer, fetchTodosFromServer } from '../../actions';
 
@@ -89,25 +89,30 @@ class MultipInput extends Component<any, any>{
         console.log('handleEditClick..........')
         const { todos, tempTodos } = this.state;
         const index = dataItem.id - 1;
+        console.log('index..........', index)
+        console.log('tempTodos..........', Object.assign({}, todos[index]))
         this.setState({
             tempTodos: Object.assign({}, todos[index])
         });
         const data = todos.slice();
         data[index].inEdit = true;
+        console.log('data..........', data)
         this.setState({ todos: data });
     }
 
     handelCancelClick = (dataItem) => (event) => {
         console.log('handelCancelClick..........')
         const { todos, tempTodos } = this.state;
+        console.log('tempTodos..........', tempTodos)
         const index = dataItem.id - 1;
+        console.log('index..........', index)
         const data = todos.slice();
-        // data[index].inEdit = false;
+        console.log('data..........', data)
         data[index] = tempTodos
         this.setState({
             tempTodos: [],
         })
-        console.log('tempTodos.............', tempTodos);
+        console.log('tempTodos2.............', tempTodos);
         this.setState({ todos: data });
     }
 
@@ -135,7 +140,7 @@ class MultipInput extends Component<any, any>{
             </div>
 
         return (
-            <UIPatternDisplay
+            <UIDisplay
                 title="多筆輸入顯示DEMO"
                 content={multiInputDisplay}
             />
@@ -161,7 +166,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
     return {
         todos: state.todos,
-        temp: state.todos.slice(),
+        tempTodos: state.todos.slice(),
     };
 };
 

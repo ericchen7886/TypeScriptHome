@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 const Style = require("./Pageflow_style.module.css");
-import { UIPatternDisplay } from "components/Multip/UIPatternDisplay";
+import { UIDisplay } from "components/Multip/UIDisplay";
 import PageflowGrids from "./Pageflow_grids";
 import PageflowForm from "./Pageflow_form";
 import PageflowDetail from "./Pageflow_detail";
@@ -97,7 +97,7 @@ export class PageflowHome extends Component<any> {
 
         return (
             <div>
-                <UIPatternDisplay
+                <UIDisplay
                     title="Eric頁面流測試"
                     content={
                         display

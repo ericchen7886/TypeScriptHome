@@ -16,7 +16,7 @@ import React from "react";
 // css less sass
 import Style from "./deleteconfirm_style.module.css";
 // shared component
-import { PopupTitle, Title } from "./Title";
+import { PopupTitle } from "./Title";
 // material component
 import Popover from "@material-ui/core/Popover";
 import { withStyles } from "@material-ui/core";
