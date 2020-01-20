@@ -1,0 +1,15 @@
+.listitem {
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.displayarea {
+    border: 1px solid #a0a0a0;
+    padding: 6px 12px 6px 12px;
+}
+
+.taskbararea {
+    margin-bottom: 12px;
+}

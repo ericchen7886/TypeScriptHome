@@ -1,8 +1,15 @@
 export default {
-	removeAllTodo: 'removeAllTodo',
+	removeBantchTodo: 'removeBantchTodo',
 	addTodo: 'addTodo',
-	removeTodo: 'removeTodo',
+	removeTodoById: 'removeTodoById',
 	beginFetchTodoList: 'beginFetchTodoList',
 	finishFetchTodoList: 'finishFetchTodoList',
-	recvFetchTodoListResult: 'recvFetchTodoListResult'
+	finishFetchTodoValid: 'finishFetchTodoValid',
+	recvFetchTodoListResult: 'recvFetchTodoListResult',
+	addEditTodo: 'addEditTodo',
+	removeAllTodo: 'removeAllTodo',
+	nameState: 'nameState',
+	moneyState: 'moneyState',
+	descState: 'descState',
+
 };

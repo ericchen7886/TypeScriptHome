@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import { addTodo, fetchTodosOneFromServer, removeAllTodo } from '../actions';
+import { addTodo, removeAllTodo, fetchTodosOneFromServer } from '../../actions';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 
@@ -16,45 +16,55 @@ const useStyles = makeStyles((theme) =>
     button: {
       margin: theme.spacing(1),
     },
-    rightIcon: {
-      marginLeft: theme.spacing(1),
-    },
   }),
 );
+
+const handleClick: any = (value, e, props) => {
+  e.preventDefault();
+  props.removeAllTodo();
+  props.fetchTodosOneFromServer(value);
+  value = '';
+}
+
+const handleBantchClick: any = (value, e, props) => {
+  e.preventDefault();
+  props.removeAllTodo();
+  props.axiosMultipAllService();
+  value = '';
+}
+
 const Form = (props) => {
   let input: any = '';
   const classes = useStyles();
   return (
     <form
       onSubmit={e => {
-        e.preventDefault();
-        props.removeAllTodo();
-        props.fetchTodosOneFromServer(input.value);
-        console.log('1.input.....', input.value);
+        handleClick(input.value, e, props);
         input.value = '';
-      }}
+      }
+
+      }
     >
-      <input
+      <b>輸入編號NO.查詢:</b> <input
         className="form-control col-md-12"
         ref={node => {
           input = node;
         }}
+
       />
-      <Button variant="contained"
+      <Button
+        variant="contained"
         color="primary"
         className={classes.button}
         onClick={e => {
-          e.preventDefault();
-          props.removeAllTodo();
-          props.fetchTodosOneFromServer(input.value);
-          console.log('1.input.....', input.value);
+          handleClick(input.value, e, props);
           input.value = '';
         }}
       >
-        編號查詢(無輸入查詢全部)
-        <Icon className={classes.rightIcon}>Click</Icon>
+        查詢
       </Button>
-      <br />
+
+      (ex:空白則查詢全部))
     </form>
   );
 }
@@ -62,12 +72,14 @@ const Form = (props) => {
 class TodoForm extends React.Component<Props, any> {
 
   render() {
-    return (
-      <Form removeAllTodo={this.props.removeAllTodo} fetchTodosOneFromServer={this.props.fetchTodosOneFromServer} />
+    return ( // axiosAllService  axiosMultipAllService
+      <Form
+        removeAllTodo={this.props.removeAllTodo}
+        fetchTodosOneFromServer={this.props.fetchTodosOneFromServer}
+      />
     )
   }
 }
-
 const mapDispatchToProps = dispatch => {
   return {
     addTodo: text => {
@@ -78,7 +90,7 @@ const mapDispatchToProps = dispatch => {
     },
     fetchTodosOneFromServer: (id) => {
       dispatch(fetchTodosOneFromServer(id));
-    }
+    },
   };
 };
 

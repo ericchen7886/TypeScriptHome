@@ -23,8 +23,11 @@ class Title extends React.Component<Props, any> {
       <div>
         <div>
           <h1>
-            用戶資料查詢 (狀態({getErrorMsg(this.props)}))
+            用戶資料查詢
           </h1>
+          <div>
+            狀態 : {getErrorMsg(this.props)}
+          </div>
         </div>
       </div>
     );
@@ -38,16 +41,16 @@ const getErrorMsg = props => {
   if (!props.isFetching) {
     switch (props.error) {
       case 401:
-        return '找不到資源';
+        return '資料庫查無編號';
       case 404:
-        return '找不到這頁資源';
+        return '資料庫查無編號';
       case 500:
-        return '內部伺服器錯誤';
+        return '資料庫查無編號';
       case 200:
         if (!(props.todos.length > 0)) {
           return '資料庫查無編號';
         }
-        return props.todos.length;
+        return '目前查詢用戶數量: ' + props.todos.length;
       default:
         return 'Error';
     }
